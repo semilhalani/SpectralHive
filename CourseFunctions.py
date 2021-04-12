@@ -120,13 +120,13 @@ def updateFiles(oldFileName, newFileName):
     print("Both Files are now successfully updated!")
 
 def classify(fileName):
-    exam = ['exam', 'exams', 'tests', 'preparation', 'interview', 'practice test', 'practice tests']
-    design = ['draw', 'photoshop', 'photograhy', 'photo', 'edit', 'adobe', 'fiverr', 'color', 'colour', 'invideo', 'video', 'animation', 'effect', 'modeling']
-    commerce = ['management', 'finance', 'financial', 'trade', 'trader', 'account', 'trading', 'sigma', 'recruiting', 'hr analytics', 'odoo']
-    marketing = [ 'pinterest', 'marketing', 'instagram', 'sales']
-    computer = ['html', 'css', 'python', 'java', 'php', 'javascript', 'c++', 'android', 'ios', 'django', 'flask', 'codeigniter', 'laravel', 'hibernate', 'angular', 'angularjs', 'react', 'reactjs', 'node', 'nodejs', 'gaming', 'web development', 'web design', 'hack','hacker', 'hacking', 'penetration testing', 'oscp', 'ceh', 'data science', 'data analytics', 'data analysis', 'cpanel', 'firebase', 'vue', 'vuejs', 'power bi', 'tableau', 'azure', 'nlp', 'cpu', 'jquery', 'c#', 'aws', 'cloud']
-    technical = ['arduino', 'no code', 'no coding', 'without code', 'without coding', 'wordpress', 'wix', 'chemical', 'electrical', 'mechanical', 'matlab', 'calculus', 'physics', 'autocad', 'work from home', 'freelancer', 'freelancing', 'blog', 'blogger', 'blogging', 'youtube', 'channel','subscribers', 'powerpoint', 'affinity publisher', 'roboauthor', 'automation', 'microsoft word', 'microsoft excel', 'technician']
-    selfD = ['speaking', 'speaker', 'confidence', 'motivation', 'depression', 'writing', 'music', 'guitar', 'piano', 'keyboard', 'psychology', 'happy', 'happier', 'happiness', 'depressed', 'critical thinking', 'innovate', 'language']
+    exam = ['exam', 'exams', 'tests', 'interview', 'practice test', 'practice tests', 'fundamental question']
+    design = ['draw', 'photoshop', 'photograhy', 'photo', 'edit', 'adobe', 'fiverr', 'color', 'colour', 'invideo', 'animation', 'effect', 'modeling', 'revit', 'graphic', 'logo']
+    commerce = ['management', 'finance', 'financial', 'trade', 'trader', 'account', 'bookkeep', 'trading', 'recruitment', 'recruiting', 'hr analytics', 'odoo', 'crypto', 'startup', 'fundraising', 'invest', 'stock', 'bitcoin','seo', 'lean', 'agile', 'scrum', 'business intelligence']
+    marketing = [ 'pinterest', 'marketing', 'instagram', 'sales', 'sigma']
+    computer = ['html', 'css', 'python', 'java', 'php', 'javascript', 'c++', 'android', 'ios', 'django', 'decision tree', 'flask', 'codeigniter', 'laravel', 'hibernate', 'angular', 'angularjs', 'react', 'reactjs', 'node', 'nodejs', 'gaming', 'web development', 'web design', 'hack','hacker', 'hacking', 'penetration testing', 'oscp', 'ceh', 'data science', 'data analytics', 'data analysis', 'cluster analysis', 'cpanel', 'firebase', 'vue', 'vuejs', 'power bi', 'tableau', 'azure', 'nlp', 'cpu', 'jquery', 'c#', 'aws', 'cloud', 'github', 'git', 'penetration tester', 'penetration testing', 'penetration testers', 'red team', 'blue team', 'c language', 'programming c', 'servlets', 'sql', 'bootstrap', 'machine learning', 'pentesting', 'termux', 'kali linux', 'dotnet', '.net', 'supervised learning', 'unsupervised learning', 'kmeans', 'k - means', 'k-means', 'programming', 'programmer', 'html&css', 'devops']
+    technical = ['arduino', 'no code', 'no coding', 'without code', 'without coding', 'wordpress', 'wix', 'chemical', 'electrical', 'mechanical', 'matlab', 'calculus', 'physics', 'autocad', 'work from home', 'freelancer', 'freelancing', 'blog', 'blogger', 'blogging', 'youtube', 'channel','subscribers', 'powerpoint', 'udemy', 'affinity publisher', 'roboauthor', 'automation', 'microsoft word', 'microsoft excel', 'technician', 'excel skills', 'computation', "make money", 'renewable energy', 'shopify', 'computing', 'microsoft', 'sat course', 'maths', 'mathematics']
+    selfD = ['speaking', 'speaker', 'confidence', 'motivation', 'depression', 'writing', 'design thinking', 'social skills', 'music', 'flute', 'guitar', 'piano', 'keyboard', 'psychology', 'happy', 'happier', 'happiness', 'depressed', 'critical thinking', 'innovate', 'language', 'essay', 'story', 'chinese', 'italian', 'french', 'mandarin', 'german', 'master english', 'learn english', 'discipline', 'mindset', 'success', 'goal']
     examList = []
     designList = []
     commerceList = []
@@ -234,7 +234,10 @@ def reorder(fileName, flag=0):
                     title = data.split(". ")
                     data = str(counter) + ". " + title[1]
                     counter = counter + 1
-        reorderedFile.write(data + "\n")
+        if i<(len(rawFileData)-2):
+            reorderedFile.write(data + "\n")
+        else:
+            reorderedFile.write(data)
     print("\nFile: " + reorderedFileName + " has been reordered!")
     reorderedFile.close()
 
@@ -285,7 +288,7 @@ def generatePost():
     wStart = "_*Date: " + today + "*_\n"
     tStart = "Date: " + today + "\n"
     wEnd = "*Thank you for your Support!*\n*_Join our TELEGRAM channel for more courses:_*\n*https://t.me/freeknowledgesociety/*"
-    tEnd = "Thank you for your Support!\nSource: https://t.me/freeknowledgesociety/"
+    tEnd = "Thank you for your Support!\nSource:\nhttps://t.me/freeknowledgesociety/"
     examFile = open(directoryName + examFileName, "r", encoding="utf-8")
     designFile = open(directoryName + designFileName, "r", encoding="utf-8")
     commerceFile = open(directoryName + commerceFileName, "r", encoding="utf-8")
@@ -298,15 +301,32 @@ def generatePost():
 
     for i in range(8):
         currentFile = postDataFiles[i]   
-        currentFileContent = currentFile.read()
-        wFile.write(wStart)
-        tFile.write(tStart)
-        wFile.write(currentFileContent)
-        tFile.write(currentFileContent)
-        wFile.write(wEnd)
-        tFile.write(tEnd)
-        wFile.write("\n\n\n\n")
-        tFile.write("\n\n\n\n")
+        currentFileContent = currentFile.read().split("\n")
+        if len(currentFileContent)<5:
+            pass
+        else:
+            wFile.write(wStart)
+            tFile.write(tStart)
+            title = currentFileContent[0]
+            wtitle = "*" + title + "*\n\n"
+            ttitle = title + "\n\n"
+            wFile.write(wtitle)
+            tFile.write(ttitle)
+            for i in range(2, len(currentFileContent)-2):
+                text = currentFileContent[i]
+                if (i+2)%4==0:
+                    wtext = "*" + text + "*\n"
+                elif (i+1)%4==0:
+                    wtext = "_" + text + "_\n"
+                else:
+                    wtext = text + "\n"
+                ttext = text + "\n"
+                wFile.write(wtext)
+                tFile.write(ttext)
+            wFile.write(wEnd)
+            tFile.write(tEnd)
+            wFile.write("\n\n\n\n")
+            tFile.write("\n\n\n\n")
         currentFile.close()
     
     print("WhatsApp and Telegram Posts have been successfully generated!")
